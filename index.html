@@ -12,7 +12,7 @@
     var cntx;
     var t = 0.0;
     
-    var bodies = [{ pos: new Victor(64, 48), vol: new Victor(0,0), mass: 1000 }];
+    var bodies_pos = [new Victor(320, 240), new Victor(160, 120)];
     function init() {
       cv = document.getElementById('cv');
       cntx = cv.getContext('2d');
@@ -27,9 +27,10 @@
     
     function render() {
       cntx.fillStyle = 'green';
-      for(var b in bodies) {
+      for(var i = 0; i < bodies_pos.length; ++i) {
+        var bpos = bodies_pos[i];
         cntx.beginPath();
-        cntx.arc(b.pos.x, b.pos.y, 32, 0, Math.PI*2, true);
+        cntx.arc(bpos.x, bpos.y, 32, 0, Math.PI*2, true);
         cntx.closePath();
         cntx.fill();
       }
