@@ -33,7 +33,7 @@
           var r2 = d.lengthSq();
           d = d.norm();
           var Ags = bodies_mass[j] / r2;
-          Ag.add(new Victor(Ags*d.x, Ags*d.y));
+          Ag.add(new Victor(6.674e-11*Ags*d.x, 6.674e-11*Ags*d.y));
         }
         bodies_vol[i] += Ag;
         bodies_pos[i] += bodies_vol[i];
