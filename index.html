@@ -26,13 +26,13 @@
     function render() {
       cntx.fillStyle = 'green';
       cntx.beginPath();
-      cntx.arc(Math.sin(t)*40+80, 20, 32, 0, Math.PI*2, true);
+      cntx.arc(Math.sin(t)*40+200, 60, 32, 0, Math.PI*2, true);
       cntx.closePath();
       cntx.fill();
     }
     
     function loop() {
-      t += 0.0016;
+      t += 0.016;
       update();
       cntx.clearRect(0, 0, 640, 480);
       render();
