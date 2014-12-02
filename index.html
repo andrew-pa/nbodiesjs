@@ -11,6 +11,8 @@
     var cv;
     var cntx;
     var t = 0.0;
+    
+    var bodies = [{ pos: new Victor(64, 48), vol: new Victor(0,0), mass: 1000 }];
     function init() {
       cv = document.getElementById('cv');
       cntx = cv.getContext('2d');
@@ -25,10 +27,12 @@
     
     function render() {
       cntx.fillStyle = 'green';
-      cntx.beginPath();
-      cntx.arc(Math.sin(t)*40+200, 60, 32, 0, Math.PI*2, true);
-      cntx.closePath();
-      cntx.fill();
+      for(b in bodies) {
+        cntx.beginPath();
+        cntx.arc(b.pos.x, b.pos.y, 32, 0, Math.PI*2, true);
+        cntx.closePath();
+        cntx.fill();
+      }
     }
     
     function loop() {
