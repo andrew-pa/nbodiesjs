@@ -27,7 +27,7 @@
     
     function render() {
       cntx.fillStyle = 'green';
-      for(b in bodies) {
+      for(var b in bodies) {
         cntx.beginPath();
         cntx.arc(b.pos.x, b.pos.y, 32, 0, Math.PI*2, true);
         cntx.closePath();
