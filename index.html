@@ -13,6 +13,8 @@
     var t = 0.0;
     
     var bodies_pos = [new Victor(320, 240), new Victor(160, 120)];
+    var bodies_vol = [new Victor(0,0), new Victor(0,0)];
+    var bodies_mass = [1000, 1000];
     function init() {
       cv = document.getElementById('cv');
       cntx = cv.getContext('2d');
@@ -22,7 +24,20 @@
     }
     
     function update() {
-    
+      for(var i = 0; i < bodies_pos.length; ++i) {
+        var Ag = new Victor(0,0);
+        for(var j = 0; j < bodies_pos.length; ++j) {
+          if(i == j) continue;
+          // Ag = (m2)/r^2
+          var d = bodies_pos[j].subtract(bodies_pos[i]);
+          var r2 = d.lengthSq();
+          d = d.norm();
+          var Ags = bodies_mass[j] / r2;
+          Ag.add(new Victor(Ags*d.x, Ags*d.y));
+        }
+        bodies_vol[i] += Ag;
+        bodies_pos[i] += bodies_vol[i];
+      }
     }
     
     function render() {
@@ -30,7 +45,7 @@
       for(var i = 0; i < bodies_pos.length; ++i) {
         var bpos = bodies_pos[i];
         cntx.beginPath();
-        cntx.arc(bpos.x, bpos.y, 32, 0, Math.PI*2, true);
+        cntx.arc(bpos.x, bpos.y, 16, 0, Math.PI*2, true);
         cntx.closePath();
         cntx.fill();
       }
