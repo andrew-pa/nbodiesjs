@@ -10,21 +10,36 @@
   <script>
     var cv;
     var cntx;
+    var t = 0.0;
     function init() {
       cv = document.getElementById('cv');
       cntx = cv.getContext('2d');
       var a = new Victor(0, 0);
-      cntx.fillStyle = 'green';
-      cntx.rect(a.x, a.y, 640, 480);
-      cntx.fill();
+      
+      setInterval(loop, 16);
+    }
+    
+    function update() {
+    
+    }
+    
+    function render() {
+      cntx.rect(Math.sin(t*.3)*40+80, 20, 64, 64);
+    }
+    
+    function loop() {
+      t += 0.0016;
+      update();
+      cntx.clearRect(0, 0, 640, 480);
+      render();
     }
     
   </script>
   </head>
 
-  <body onload="init()">
+  <body onload="init()" style="background: black">
    <h1>Wquzxw</h1>
-   <canvas id="cv" width="640" height="480"></canvas>    
+   <canvas id="cv" width="640" height="480" style="background: black"></canvas>    
 
   </body>
 </html>
