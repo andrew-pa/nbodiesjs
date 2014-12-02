@@ -9,15 +9,17 @@
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
     <title>Wquzxw</title>
-
+ 
+  <script src="victor.min.js"></script>
   <script>
     var cv;
     var cntx;
     function init() {
       cv = document.getElementById('cv');
       cntx = cv.getContext('2d');
+      var a = new Victor(0, 0);
       cntx.fillStyle = 'green';
-      cntx.rect(0, 0, 640, 480);
+      cntx.rect(a.x, a.y, 640, 480);
       cntx.fill();
     }
     
