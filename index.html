@@ -5,65 +5,121 @@
     <meta charset='utf-8' />
 
     <title>Wquzxw</title>
- 
-  <script src="victor.min.js"></script>
+  <!-- this script block is the Victor.js library, (victor.min.js) -->
+  <script>!function(t){if("object"==typeof exports)module.exports=t();else if("function"==typeof define&&define.amd)define(t);else{var n;"undefined"!=typeof window?n=window:"undefined"!=typeof global?n=global:"undefined"!=typeof self&&(n=self),n.Victor=t()}}(function(){return function t(n,i,o){function r(s,h){if(!i[s]){if(!n[s]){var u="function"==typeof require&&require;if(!h&&u)return u(s,!0);if(e)return e(s,!0);throw new Error("Cannot find module '"+s+"'")}var p=i[s]={exports:{}};n[s][0].call(p.exports,function(t){var i=n[s][1][t];return r(i?i:t)},p,p.exports,t,n,i,o)}return i[s].exports}for(var e="function"==typeof require&&require,s=0;s<o.length;s++)r(o[s]);return r}({1:[function(t,n,i){function o(t,n){return this instanceof o?(this.x=t||0,void(this.y=n||0)):new o(t,n)}function r(t,n){return Math.floor(Math.random()*(n-t+1)+t)}function e(t){return t*h}function s(t){return t/h}i=n.exports=o,o.fromArray=function(t){return new o(t[0]||0,t[1]||0)},o.fromObject=function(t){return new o(t.x||0,t.y||0)},o.prototype.addX=function(t){return this.x+=t.x,this},o.prototype.addY=function(t){return this.y+=t.y,this},o.prototype.add=function(t){return this.x+=t.x,this.y+=t.y,this},o.prototype.subtractX=function(t){return this.x-=t.x,this},o.prototype.subtractY=function(t){return this.y-=t.y,this},o.prototype.subtract=function(t){return this.x-=t.x,this.y-=t.y,this},o.prototype.divideX=function(t){return this.x/=t.x,this},o.prototype.divideY=function(t){return this.y/=t.y,this},o.prototype.divide=function(t){return this.x/=t.x,this.y/=t.y,this},o.prototype.invertX=function(){return this.x*=-1,this},o.prototype.invertY=function(){return this.y*=-1,this},o.prototype.invert=function(){return this.invertX(),this.invertY(),this},o.prototype.multiplyX=function(t){return this.x*=t.x,this},o.prototype.multiplyY=function(t){return this.y*=t.y,this},o.prototype.multiply=function(t){return this.x*=t.x,this.y*=t.y,this},o.prototype.normalize=function(){var t=this.length();return 0===t?(this.x=1,this.y=0):this.divide(o(t,t)),this},o.prototype.norm=o.prototype.normalize,o.prototype.limit=function(t,n){return Math.abs(this.x)>t&&(this.x*=n),Math.abs(this.y)>t&&(this.y*=n),this},o.prototype.randomize=function(t,n){return this.randomizeX(t,n),this.randomizeY(t,n),this},o.prototype.randomizeX=function(t,n){var i=Math.min(t.x,n.x),o=Math.max(t.x,n.x);return this.x=r(i,o),this},o.prototype.randomizeY=function(t,n){var i=Math.min(t.y,n.y),o=Math.max(t.y,n.y);return this.y=r(i,o),this},o.prototype.randomizeAny=function(t,n){return Math.round(Math.random())?this.randomizeX(t,n):this.randomizeY(t,n),this},o.prototype.unfloat=function(){return this.x=Math.round(this.x),this.y=Math.round(this.y),this},o.prototype.mixX=function(t,n){return"undefined"==typeof n&&(n=.5),this.x=(1-n)*this.x+n*t.x,this},o.prototype.mixY=function(t,n){return"undefined"==typeof n&&(n=.5),this.y=(1-n)*this.y+n*t.y,this},o.prototype.mix=function(t,n){return this.mixX(t,n),this.mixY(t,n),this},o.prototype.clone=function(){return new o(this.x,this.y)},o.prototype.copyX=function(t){return this.x=t.x,this},o.prototype.copyY=function(t){return this.y=t.y,this},o.prototype.copy=function(t){return this.copyX(t),this.copyY(t),this},o.prototype.zero=function(){return this.x=this.y=0,this},o.prototype.dot=function(t){return this.x*t.x+this.y*t.y},o.prototype.cross=function(t){return this.x*t.y-this.y*t.x},o.prototype.projectOnto=function(t){var n=(this.x*t.x+this.y*t.y)/(t.x*t.x+t.y*t.y);return this.x=n*t.x,this.y=n*t.y,this},o.prototype.horizontalAngle=function(){return Math.atan2(this.y,this.x)},o.prototype.horizontalAngleDeg=function(){return e(this.horizontalAngle())},o.prototype.verticalAngle=function(){return Math.atan2(this.x,this.y)},o.prototype.verticalAngleDeg=function(){return e(this.verticalAngle())},o.prototype.angle=o.prototype.horizontalAngle,o.prototype.angleDeg=o.prototype.horizontalAngleDeg,o.prototype.direction=o.prototype.horizontalAngle,o.prototype.rotate=function(t){var n=this.x*Math.cos(t)-this.y*Math.sin(t),i=this.x*Math.sin(t)+this.y*Math.cos(t);return this.x=n,this.y=i,this},o.prototype.rotateDeg=function(t){return t=s(t),this.rotate(t)},o.prototype.rotateBy=function(t){var n=this.angle()+t;return this.rotate(n)},o.prototype.rotateByDeg=function(t){return t=s(t),this.rotateBy(t)},o.prototype.distanceX=function(t){return this.x-t.x},o.prototype.absDistanceX=function(t){return Math.abs(this.distanceX(t))},o.prototype.distanceY=function(t){return this.y-t.y},o.prototype.absDistanceY=function(t){return Math.abs(this.distanceY(t))},o.prototype.distance=function(t){return Math.sqrt(this.distanceSq(t))},o.prototype.distanceSq=function(t){var n=this.distanceX(t),i=this.distanceY(t);return n*n+i*i},o.prototype.length=function(){return Math.sqrt(this.lengthSq())},o.prototype.lengthSq=function(){return this.x*this.x+this.y*this.y},o.prototype.magnitude=o.prototype.length,o.prototype.isZero=function(){return 0===this.x&&0===this.y},o.prototype.isEqualTo=function(t){return this.x===t.x&&this.y===t.y},o.prototype.toString=function(){return"x:"+this.x+", y:"+this.y},o.prototype.toArray=function(){return[this.x,this.y]},o.prototype.toObject=function(){return{x:this.x,y:this.y}};var h=180/Math.PI},{}]},{},[1])(1)});</script>
+  <!-- actual physics simulation -->
   <script>
     var cv;
     var cntx;
     var t = 0.0;
-    
-    var bodies_pos = [new Victor(320, 240), new Victor(160, 120)];
-    var bodies_vol = [new Victor(1,0), new Victor(0,0)];
-    var bodies_mass = [1000000, 1000000];
+
+    function scalev(v, f) { return new Victor(v.x*f, v.y*f); }
+    function mkstate(p, v) { return {pos:p, vol:v}; }
+    function mkderivative(dp, dv) { return {dpos:dp, dvol:dv}; }
+
+    var pxm = 5.0; //pixel per meter so (meters)*pxm = (pixels)
+    var bodies = [/*{ pos: new Victor(10, 10), vol: new Victor(.1,.1) },
+                  { pos: new Victor(10, 80), vol: new Victor(-0.1,0.1)},
+                  { pos: new Victor(80, 10), vol: new Victor(-.1,.1) },
+                  { pos: new Victor(80, 80), vol: new Victor(-0.1,-.1) } */];
     function init() {
       cv = document.getElementById('cv');
       cntx = cv.getContext('2d');
-      var a = new Victor(0, 0);
-      
+      var tl = new Victor(5,5);
+      var br = new Victor(100,100);
+      var vtl = new Victor(-.1, -.1);
+      var vbr = new Victor(.1, .1);
+      for(var i = 0; i < 2; ++i) {
+        bodies[bodies.length] = { pos: Victor(0,0).randomize(tl, br),
+          vol: Victor(0,0) };
+        }
       setInterval(loop, 16);
     }
-    
+
+    var G = 6.674E-11;
+    function acceleration(state, t) {
+      var a = new Victor(0,0);
+      var spos = state.pos.clone();
+      for(var i = 0; i < bodies.length; ++i) {
+        var d = spos.subtract(bodies[i].pos);
+        var r2 = d.lengthSq();
+        if(r2 == 0) continue;
+        var r = Math.sqrt(r2);
+        d.x /= r; d.y /= r;
+        var Ag = (1e12)/r2;
+        a.x += d.x*Ag;
+        a.y += d.y*Ag;
+      }
+      return new Victor(-a.x*G, -a.y*G);
+    }
+
+    function evaluate_rk4(init_state, t, dt, drv) {
+      var state = mkstate(
+        init_state.pos.add(scalev(drv.dpos, dt)),
+        init_state.vol.add(scalev(drv.dvol, dt))
+      );
+      return mkderivative(
+        state.vol,
+        acceleration(state, t+dt)
+      );
+    }
+
+    function integrate_rk4(state, t, dt) {
+      var a = evaluate_rk4(state, t, 0, mkderivative(new Victor(0,0), new Victor(0,0)));
+      var b = evaluate_rk4(state, t, dt*0.5, a);
+      var c = evaluate_rk4(state, t, dt*0.5, b);
+      var d = evaluate_rk4(state, t, dt, c);
+      var dxdt = (1.0/6.0)*(a.dpos.x + 2.0*(b.dpos.x+c.dpos.x) + d.dpos.x);
+      var dydt = (1.0/6.0)*(a.dpos.y + 2.0*(b.dpos.y+c.dpos.y) + d.dpos.y);
+
+      var dvxdt = (1.0/6.0)*(a.dvol.x + 2.0*(b.dvol.x+c.dvol.x) + d.dvol.x);
+      var dvydt = (1.0/6.0)*(a.dvol.y + 2.0*(b.dvol.y+c.dvol.y) + d.dvol.y);
+
+      var rs = mkstate(
+        state.pos.add(new Victor(dxdt*dt, dydt*dt)),
+        state.vol.add(new Victor(dvxdt*dt, dvydt*dt))
+      );
+      return rs;
+    }
+
     function update() {
-      for(var i = 0; i < bodies_pos.length; ++i) {
-        var Ag = new Victor(0,0);
-        for(var j = 0; j < bodies_pos.length; ++j) {
-          if(i == j) continue;
-          // Ag = (m2)/r^2
-          var d = new Victor(bodies_pos[j].x - bodies_pos[i].x, bodies_pos[j].y-bodies_pos[i].y)
-          var r2 = d.lengthSq();
-          d = d.norm();
-          var Ags = bodies_mass[j] / r2;
-          Ag.add(new Victor(6.674e-11*Ags*d.x, 6.674e-11*Ags*d.y));
+      for(var i = 0; i < bodies.length; ++i) {
+        if(bodies[i].pos.y < 0 || bodies[i].pos.y > 480/pxm) {
+          bodies[i].vol.y *= -1;
         }
-        bodies_vol[i] += Ag;
-        bodies_pos[i] += bodies_vol[i];
+        if(bodies[i].pos.x < 0 || bodies[i].pos.x > 640/pxm) {
+          bodies[i].vol.x *= -1;
+        }
+        var ns = integrate_rk4(bodies[i], 0, 0.016);
+        bodies[i].pos = ns.pos;
+        bodies[i].vol = ns.vol;
       }
     }
-    
+
     function render() {
       cntx.fillStyle = 'green';
-      for(var i = 0; i < bodies_pos.length; ++i) {
-        var bpos = bodies_pos[i];
+      for(var i = 0; i < bodies.length; ++i) {
+        var bpos = bodies[i].pos;
         cntx.beginPath();
-        cntx.arc(bpos.x, bpos.y, 16, 0, Math.PI*2, true);
+        cntx.arc(bpos.x*pxm, bpos.y*pxm, .75*pxm, 0, Math.PI*2, true);
         cntx.closePath();
         cntx.fill();
       }
     }
-    
+
     function loop() {
       t += 0.016;
       update();
       cntx.clearRect(0, 0, 640, 480);
       render();
     }
-    
+
   </script>
   </head>
 
-  <body onload="init()" style="background: black">
-   <h1>Wquzxw</h1>
-   <canvas id="cv" width="640" height="480" style="background: black"></canvas>    
+  <body onload="init()" style="background: rgb(32,32,32)">
+   <h1 style="color: rgb(200,120,0)">N-Body Simulation</h1>
+   <canvas id="cv" width="640" height="480" style="background: black"></canvas>
 
   </body>
 </html>
